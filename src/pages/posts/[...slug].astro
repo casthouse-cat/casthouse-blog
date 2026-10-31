@@ -1,0 +1,72 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getPublishedPosts, appLink } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+
+const site = Astro.site!.toString().replace(/\/$/, '');
+const url = `${site}/posts/${post.id}`;
+const pageTitle = d.metaTitle ?? `${d.title} | 캐스트하우스`;
+const fmt = (date: Date) =>
+  new Intl.DateTimeFormat('ko-KR', { dateStyle: 'long', timeZone: 'Asia/Seoul' }).format(date);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: d.title,
+    description: d.description,
+    keywords: d.keywords.join(', '),
+    inLanguage: 'ko-KR',
+    datePublished: d.publishedAt.toISOString(),
+    dateModified: (d.updatedAt ?? d.publishedAt).toISOString(),
+    mainEntityOfPage: url,
+    author: { '@type': 'Organization', name: '캐스트하우스', url: 'https://casthouse.co' },
+    publisher: { '@type': 'Organization', name: '캐스트하우스', url: 'https://casthouse.co' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '캐스트하우스 가이드', item: site },
+      { '@type': 'ListItem', position: 2, name: d.title, item: url },
+    ],
+  },
+];
+---
+
+<Base
+  title={pageTitle}
+  description={d.description}
+  path={`/posts/${post.id}`}
+  type="article"
+  ogImage={d.ogImage}
+  publishedAt={d.publishedAt}
+  updatedAt={d.updatedAt}
+  jsonLd={jsonLd}
+  ctaSlug={post.id}
+>
+  <article class="article">
+    <span class="meta">{d.category}</span>
+    <h1>{d.title}</h1>
+    <p class="meta">
+      <time datetime={d.publishedAt.toISOString()}>{fmt(d.publishedAt)}</time>
+    </p>
+
+    <Content />
+
+    <section class="cta-card">
+      <h2>{d.relatedAnimal ? `${d.relatedAnimal}와 하룻밤 살아보기` : '직접 하룻밤 살아보기'}</h2>
+      <p>읽는 것과 살아보는 것은 달라요. 아이들을 만나러 가볼래요?</p>
+      <a class="pill" href={appLink(post.id)}>캐스트하우스에서 보기</a>
+    </section>
+  </article>
+</Base>

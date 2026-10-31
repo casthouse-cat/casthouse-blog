@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+import { appLink } from '../lib/posts';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string; // 예: '/posts/my-slug' (끝 슬래시 없이)
+  ogImage?: string;
+  type?: 'website' | 'article';
+  publishedAt?: Date;
+  updatedAt?: Date;
+  jsonLd?: Record<string, unknown>[];
+  ctaSlug?: string;
+}
+
+const {
+  title,
+  description,
+  path,
+  ogImage,
+  type = 'website',
+  publishedAt,
+  updatedAt,
+  jsonLd = [],
+  ctaSlug = 'home',
+} = Astro.props;
+
+const site = Astro.site!.toString().replace(/\/$/, '');
+const canonical = `${site}${path === '/' ? '' : path}`;
+const image = ogImage
+  ? ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`
+  : `${site}/og-default.png`;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:site_name" content="캐스트하우스" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
+    {updatedAt && <meta property="article:modified_time" content={updatedAt.toISOString()} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    {jsonLd.map((data) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">캐스트하우스 가이드</a>
+      <a class="pill pill-sm" href={appLink(ctaSlug)}>앱으로 가기</a>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <p>캐스트하우스는 유기묘와 하룻밤을 살아본 뒤 입양을 결정하는 플랫폼이에요.</p>
+      <p><a href={appLink(ctaSlug)}>casthouse.co</a></p>
+    </footer>
+
+    <div class="cta-bar">
+      <a class="pill" href={appLink(ctaSlug)}>함께 살아보기</a>
+    </div>
+  </body>
+</html>

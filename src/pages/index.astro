@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { getPublishedPosts } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: '캐스트하우스',
+    url: 'https://casthouse.co',
+    description: '유기묘와 하룻밤을 함께 살아본 뒤 입양을 결정하는 플랫폼',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: '캐스트하우스 가이드',
+    url: Astro.site!.toString().replace(/\/$/, ''),
+    inLanguage: 'ko-KR',
+  },
+];
+---
+
+<Base
+  title="캐스트하우스 가이드 | 유기묘 입양 전 함께 살아보기"
+  description="고양이와 실제로 하룻밤 살아보면 보이는 것들. 입양 전 경험, 고양이 성격 맞춤, 털날림·알레르기 같은 현실적인 고민을 정리했어요."
+  path="/"
+  jsonLd={jsonLd}
+>
+  <section class="hero">
+    <h1>고양이와 함께 살아보기 가이드</h1>
+    <p>입양을 결정하기 전에, 하룻밤 살아보며 알게 되는 것들을 기록해요.</p>
+  </section>
+
+  {posts.length === 0 ? (
+    <p>곧 첫 글이 올라와요.</p>
+  ) : (
+    <ul class="card-list">
+      {posts.map((post) => (
+        <li>
+          <a class="card" href={`/posts/${post.id}`}>
+            <span class="tag">{post.data.category}</span>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

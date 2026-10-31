@@ -1,0 +1,114 @@
+/* 웹앱 톤(흰 배경, 검정 알약 버튼, 연회색 둥근 카드)에 맞춘 기본 스타일 */
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --card: #f5f5f5;
+  --line: #e5e5e5;
+  --accent: #1a1a1a;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', system-ui, sans-serif;
+  line-height: 1.75;
+  word-break: keep-all;
+  padding-bottom: 88px; /* 하단 고정 CTA 높이만큼 */
+}
+
+a { color: inherit; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--bg);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+.brand { font-weight: 700; text-decoration: none; font-size: 17px; }
+
+.container { max-width: 680px; margin: 0 auto; padding: 24px 20px 40px; }
+
+.pill {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 14px;
+}
+.pill-sm { padding: 8px 14px; font-size: 14px; border-radius: 999px; }
+
+.cta-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+}
+.cta-bar .pill { width: 100%; max-width: 640px; }
+
+.footer {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 글 목록 */
+.hero h1 { font-size: 26px; line-height: 1.4; margin: 8px 0 8px; }
+.hero p { color: var(--muted); margin: 0 0 24px; }
+
+.card-list { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
+.card {
+  display: block;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  text-decoration: none;
+}
+.card .tag { font-size: 13px; color: var(--muted); }
+.card h2 { font-size: 18px; margin: 4px 0 6px; line-height: 1.45; }
+.card p { margin: 0; font-size: 15px; color: #444; }
+
+/* 글 본문 */
+.article h1 { font-size: 26px; line-height: 1.4; margin: 8px 0 8px; }
+.article .meta { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.article h2 { font-size: 20px; margin: 36px 0 8px; line-height: 1.45; }
+.article h3 { font-size: 17px; margin: 24px 0 6px; }
+.article p { margin: 0 0 16px; }
+.article ul, .article ol { padding-left: 22px; margin: 0 0 16px; }
+.article blockquote {
+  margin: 0 0 16px;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+.article img { max-width: 100%; height: auto; border-radius: var(--radius); }
+
+.cta-card {
+  margin: 40px 0 8px;
+  padding: 22px 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.cta-card h2 { margin: 0 0 6px; font-size: 18px; }
+.cta-card p { margin: 0 0 16px; color: #444; font-size: 15px; }
