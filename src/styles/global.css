@@ -6,6 +6,7 @@
   --card: #f5f5f5;
   --line: #e5e5e5;
   --accent: #1a1a1a;
+  --brand: #a569f5;
   --radius: 16px;
 }
 
@@ -86,11 +87,12 @@ a { color: inherit; }
 .article p { margin: 0 0 16px; }
 .article ul, .article ol { padding-left: 22px; margin: 0 0 16px; }
 .article blockquote {
-  margin: 0 0 16px;
-  padding: 14px 18px;
-  background: var(--card);
-  border-radius: var(--radius);
+  margin: 0 0 20px;
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--brand);
+  font-size: 1.04em;
 }
+.article blockquote p { margin: 0; }
 .article img { max-width: 100%; height: auto; border-radius: var(--radius); }
 
 .cta-card {
