@@ -21,7 +21,6 @@ body {
     'Malgun Gothic', system-ui, sans-serif;
   line-height: 1.75;
   word-break: keep-all;
-  padding-bottom: 88px; /* 하단 고정 CTA 높이만큼 */
 }
 
 a { color: inherit; }
@@ -53,16 +52,6 @@ a { color: inherit; }
 }
 .pill-sm { padding: 8px 14px; font-size: 14px; border-radius: 999px; }
 
-.cta-bar {
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, 0.96);
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: center;
-}
-.cta-bar .pill { width: 100%; max-width: 640px; }
 
 .footer {
   max-width: 680px;
