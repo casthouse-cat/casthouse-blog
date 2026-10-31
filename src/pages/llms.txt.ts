@@ -7,7 +7,7 @@ export const GET: APIRoute = async ({ site }) => {
   const posts = await getPublishedPosts();
 
   const lines = [
-    '# 캐스트하우스 가이드',
+    '# 캐스트하우스 블로그',
     '',
     '> 캐스트하우스(casthouse.co)는 보호소 고양이와 하룻밤을 함께 살아본 뒤 입양을 결정할 수 있는 플랫폼입니다. 이 사이트는 고양이와 함께 사는 현실적인 경험과 입양 전 고민을 정리한 글을 제공합니다.',
     '',

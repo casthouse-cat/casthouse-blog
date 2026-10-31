@@ -30,7 +30,7 @@ const site = Astro.site!.toString().replace(/\/$/, '');
 const canonical = `${site}${path === '/' ? '' : path}`;
 const image = ogImage
   ? ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`
-  : `${site}/og-default.png`;
+  : `${site}/logo.png`;
 ---
 
 <!doctype html>
@@ -41,7 +41,9 @@ const image = ogImage
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:site_name" content="캐스트하우스" />
@@ -65,7 +67,10 @@ const image = ogImage
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="/">캐스트하우스 가이드</a>
+      <a class="brand" href="/" aria-label="캐스트하우스 블로그 홈">
+        <img src="/logo.png" alt="캐스트하우스 로고" width="32" height="32" />
+        <span>CASTHOUSE BLOG</span>
+      </a>
       <a class="pill pill-sm" href={appLink(ctaSlug)}>앱으로 가기</a>
     </header>
 
