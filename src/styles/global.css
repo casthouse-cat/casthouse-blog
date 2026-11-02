@@ -94,6 +94,7 @@ a { color: inherit; }
 }
 .article blockquote p { margin: 0; }
 .article img { max-width: 100%; height: auto; border-radius: var(--radius); }
+.article img[src*="/images/posts/app-"] { display: block; width: 300px; margin: 20px auto; border-radius: 0; }
 
 .cta-card {
   margin: 40px 0 8px;
