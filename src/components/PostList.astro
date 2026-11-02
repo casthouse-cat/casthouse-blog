@@ -9,6 +9,7 @@ const fmt = (d: Date) =>
 {posts.length === 0 ? (
   <p>곧 첫 글이 올라와요.</p>
 ) : (
+  <div class="list-head"><b>최신 글</b><span>{posts.length}</span></div>
   <ul class="post-list">
     {posts.map((post) => (
       <li>

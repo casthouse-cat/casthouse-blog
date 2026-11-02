@@ -66,7 +66,7 @@ a { color: inherit; }
 
 /* 글 목록 */
 .hero h1 { font-size: 26px; line-height: 1.4; margin: 8px 0 8px; }
-.hero p { color: var(--muted); margin: 0 0 20px; }
+.hero p { color: #8a8f98; font-size: 14px; line-height: 1.65; margin: 0 0 40px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* 카테고리 칩 */
@@ -76,6 +76,8 @@ a { color: inherit; }
 .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* 글 목록: 박스 없이 선으로만 구분 */
+.list-head { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0 10px; border-top: 2px solid var(--text); font-size: 14px; }
+.list-head span { color: var(--muted); }
 .post-list { padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--line); }
 .post-list li { border-bottom: 1px solid var(--line); }
 .post-item { display: block; padding: 22px 0; text-decoration: none; }
