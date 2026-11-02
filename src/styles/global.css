@@ -61,6 +61,7 @@ a { color: inherit; }
   padding: 24px 20px;
   color: var(--muted);
   font-size: 14px;
+  text-align: center;
 }
 
 /* 글 목록 */
