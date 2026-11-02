@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import CategoryChips from '../components/CategoryChips.astro';
 import { getPublishedPosts } from '../lib/posts';
 
 const posts = await getPublishedPosts();
@@ -29,23 +31,10 @@ const jsonLd = [
   jsonLd={jsonLd}
 >
   <section class="hero">
-    <h1>고양이와 함께 살아보기 가이드</h1>
+    <h1 class="sr-only">캐스트하우스 블로그</h1>
     <p>입양을 결정하기 전에, 함께 살아보며 알게 되는 것들을 기록해요.</p>
   </section>
 
-  {posts.length === 0 ? (
-    <p>곧 첫 글이 올라와요.</p>
-  ) : (
-    <ul class="card-list">
-      {posts.map((post) => (
-        <li>
-          <a class="card" href={`/posts/${post.id}`}>
-            <span class="tag">{post.data.category}</span>
-            <h2>{post.data.title}</h2>
-            <p>{post.data.description}</p>
-          </a>
-        </li>
-      ))}
-    </ul>
-  )}
+  <CategoryChips />
+  <PostList posts={posts} />
 </Base>

@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import CategoryChips from '../../components/CategoryChips.astro';
+import { getPublishedPosts } from '../../lib/posts';
+import { getCategories, categorySlug, categoryPath } from '../../lib/categories';
+
+// 카테고리가 2개 이상일 때만 카테고리 페이지를 만든다 (1개일 땐 홈과 같은 내용이라 만들지 않음)
+export async function getStaticPaths() {
+  const categories = await getCategories();
+  if (categories.length < 2) return [];
+  const posts = await getPublishedPosts();
+  return categories.map((name) => ({
+    params: { slug: categorySlug(name) },
+    props: { name, posts: posts.filter((p) => p.data.category === name) },
+  }));
+}
+
+const { name, posts } = Astro.props;
+---
+
+<Base
+  title={`${name} | 캐스트하우스 블로그`}
+  description={`캐스트하우스 블로그의 '${name}' 글 모음입니다. 입양을 기다리는 보호소 고양이와 함께 살아본 뒤 입양을 결정하는 유기묘 입양 플랫폼 캐스트하우스가 씁니다.`}
+  path={categoryPath(name)}
+>
+  <section class="hero">
+    <h1>{name}</h1>
+  </section>
+  <CategoryChips active={name} />
+  <PostList posts={posts} />
+</Base>

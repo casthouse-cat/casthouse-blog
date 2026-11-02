@@ -1,0 +1,15 @@
+---
+import { getCategories, categoryPath } from '../lib/categories';
+interface Props { active?: string }
+const { active } = Astro.props;
+const categories = await getCategories();
+---
+
+{categories.length >= 2 && (
+  <nav class="chips" aria-label="카테고리">
+    <a class={`chip ${!active ? 'on' : ''}`} href="/">전체</a>
+    {categories.map((c) => (
+      <a class={`chip ${active === c ? 'on' : ''}`} href={categoryPath(c)}>{c}</a>
+    ))}
+  </nav>
+)}
