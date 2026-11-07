@@ -58,7 +58,3 @@ draft: false
 ## 입양은 가볍게 시작할 수 없습니다.
 
 그래서 만반의 준비가 필요하죠. 작지만 결코 가벼울 수 없는 묵직함이기에 호기심이나 순간의 감정만으로 선뜻 시작할 수는 없습니다. 내 삶의 무게중심을 가늠해보는 진심 어린 준비의 시간이 필요합니다.
-
-입양을 고민하면서 두렵고 망설여진다면 [고양이 입양이 두렵고 망설여질 때, 어떻게 결정하면 될까요?](/posts/cat-adoption-hesitation/) 글도 함께 읽어보세요.
-
-👉 [입양을 기다리는 아이들과 함께 살아보며 결정해보세요](https://casthouse.co/?utm_source=blog&utm_medium=content&utm_campaign=cat-adoption-worth-it)
