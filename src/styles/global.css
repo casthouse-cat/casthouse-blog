@@ -119,3 +119,18 @@ a { color: inherit; }
 .article th, .article td { padding:10px 12px; border-bottom:1px solid #e5e7eb; text-align:left; vertical-align:top; min-width:120px; }
 .article th { font-weight:700; border-bottom:2px solid #1a1a1a; white-space:nowrap; }
 .article td:first-child, .article th:first-child { min-width:64px; font-weight:600; white-space:nowrap; }
+
+/* 카드뉴스 캐러셀 */
+.article .carousel { max-width: 440px; margin: 28px auto; position: relative; }
+.carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: var(--radius); background: #f9f8f6; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track .slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; }
+.article .carousel-track img { display: block; width: 100%; height: auto; border-radius: 0; margin: 0; }
+.carousel-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.carousel-dots { display: flex; gap: 6px; }
+.carousel-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: var(--line); cursor: pointer; }
+.carousel-dots button.on { background: var(--brand); }
+.carousel-nav { display: flex; gap: 6px; }
+.carousel-nav button { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--text); font-size: 14px; cursor: pointer; }
+.carousel-nav button:disabled { opacity: .35; cursor: default; }
+@media (max-width: 600px) { .carousel-nav { display: none; } }
