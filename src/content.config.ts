@@ -15,6 +15,7 @@ const posts = defineCollection({
     updatedAt: z.coerce.date().optional(),
     ogImage: z.string().optional(),           // 절대경로(/images/..) 또는 전체 URL
     thumbnail: z.string().optional(),         // 목록 썸네일(카드뉴스 글 등)
+    cardTitle: z.string().optional(),         // 홈 카드뉴스 띠에 보일 제목(없으면 title)
     cardCount: z.number().optional(),         // 카드뉴스 장수. 있으면 목록에 라벨 표시
     relatedAnimal: z.string().optional(),     // 글 하단 CTA에 쓸 고양이 이름
     draft: z.boolean().default(false),        // true면 운영 빌드에서 제외

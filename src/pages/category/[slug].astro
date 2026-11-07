@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   return categories.map((name) => ({
     params: { slug: categorySlug(name) },
-    props: { name, posts: posts.filter((p) => p.data.category === name) },
+    props: { name, posts: posts.filter((p) => p.data.category === name && !p.data.cardCount) },
   }));
 }
 

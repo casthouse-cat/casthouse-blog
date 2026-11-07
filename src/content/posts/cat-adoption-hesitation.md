@@ -13,6 +13,7 @@ keywords:
 category: 캐스트하우스 이야기
 publishedAt: 2026-11-07
 thumbnail: /images/posts/card-hesitation-thumb.webp
+cardTitle: 고양이를 너무 좋아해서 아직 입양하지 못했습니다
 cardCount: 8
 draft: false
 ---

@@ -6,16 +6,16 @@ const { posts } = Astro.props;
 
 {posts.length > 0 && (
   <section class="cn-strip" aria-label="카드뉴스">
-    <div class="list-head"><b>카드뉴스</b><span>{posts.length}</span></div>
+    <div class="list-head"><b>카드뉴스</b><span>{posts.length > 1 ? `${posts.length} · 옆으로 넘겨보세요` : posts.length}</span></div>
     <ul class="cn-track">
       {posts.map((post) => (
         <li class="cn-item">
           <a href={`/posts/${post.id}/`}>
             <span class="cn-thumb">
-              <img src={post.data.thumbnail} alt="" width="240" height="240" loading="lazy" />
+              <img src={post.data.thumbnail} alt="" width="480" height="600" loading="lazy" />
               <span class="badge">카드뉴스 {post.data.cardCount}장</span>
             </span>
-            <span class="cn-title">{post.data.title}</span>
+            <span class="cn-title">{post.data.cardTitle ?? post.data.title}</span>
           </a>
         </li>
       ))}
