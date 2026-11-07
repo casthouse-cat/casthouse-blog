@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://blog.casthouse.co',
   output: 'static',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   integrations: [sitemap()],
 });

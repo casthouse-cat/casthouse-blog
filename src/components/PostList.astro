@@ -13,7 +13,7 @@ const fmt = (d: Date) =>
   <ul class="post-list">
     {posts.map((post) => (
       <li>
-        <a class="post-item" href={`/posts/${post.id}`}>
+        <a class="post-item" href={`/posts/${post.id}/`}>
           <span class="post-meta"><b>{post.data.category}</b> · {fmt(post.data.publishedAt)}</span>
           <h2>{post.data.title}</h2>
           <p>{post.data.description}</p>

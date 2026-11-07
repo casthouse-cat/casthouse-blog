@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ site }) => {
     '> 캐스트하우스(casthouse.co)는 입양을 기다리는 보호소 소속 고양이와 함께 살아본 뒤 입양을 결정하는 유기묘 입양 플랫폼입니다. 이 사이트는 고양이와 함께 사는 현실적인 경험과 입양 전 고민을 정리한 글을 제공합니다.',
     '',
     '## 글',
-    ...posts.map((p) => `- [${p.data.title}](${base}/posts/${p.id}): ${p.data.description}`),
+    ...posts.map((p) => `- [${p.data.title}](${base}/posts/${p.id}/): ${p.data.description}`),
     '',
     '## 서비스',
     '- [캐스트하우스 앱](https://casthouse.co): 고양이 소개, 성격 매칭, 함께 살아보기 예약',

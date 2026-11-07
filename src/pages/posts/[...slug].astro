@@ -13,7 +13,7 @@ const { Content } = await render(post);
 const d = post.data;
 
 const site = Astro.site!.toString().replace(/\/$/, '');
-const url = `${site}/posts/${post.id}`;
+const url = `${site}/posts/${post.id}/`;
 const pageTitle = d.metaTitle ?? `${d.title} | 캐스트하우스`;
 const fmt = (date: Date) =>
   new Intl.DateTimeFormat('ko-KR', { dateStyle: 'long', timeZone: 'Asia/Seoul' }).format(date);
@@ -46,7 +46,7 @@ const jsonLd = [
 <Base
   title={pageTitle}
   description={d.description}
-  path={`/posts/${post.id}`}
+  path={`/posts/${post.id}/`}
   type="article"
   ogImage={d.ogImage}
   publishedAt={d.publishedAt}

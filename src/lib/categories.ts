@@ -13,7 +13,7 @@ export function categorySlug(name: string) {
 }
 
 export function categoryPath(name: string) {
-  return `/category/${categorySlug(name)}`;
+  return `/category/${categorySlug(name)}/`;
 }
 
 // 글이 있는 카테고리 목록. 위 SLUGS에 적힌 순서대로 나오고, 목록에 없는 카테고리는 그 뒤에 붙는다.

@@ -5,7 +5,7 @@ import { appLink } from '../lib/posts';
 interface Props {
   title: string;
   description: string;
-  path: string; // 예: '/posts/my-slug' (끝 슬래시 없이)
+  path: string; // 예: '/posts/my-slug/'
   ogImage?: string;
   type?: 'website' | 'article';
   publishedAt?: Date;
@@ -27,7 +27,8 @@ const {
 } = Astro.props;
 
 const site = Astro.site!.toString().replace(/\/$/, '');
-const canonical = `${site}${path === '/' ? '' : path}`;
+// GitHub Pages는 폴더형 주소(끝에 슬래시)로 내보내므로 canonical도 슬래시로 통일한다.
+const canonical = `${site}${path.endsWith('/') ? path : `${path}/`}`;
 const image = ogImage
   ? ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`
   : `${site}/logo.png`;
