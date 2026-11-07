@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { posts: CollectionEntry<'posts'>[] }
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+  <section class="cn-strip" aria-label="카드뉴스">
+    <div class="list-head"><b>카드뉴스</b><span>{posts.length}</span></div>
+    <ul class="cn-track">
+      {posts.map((post) => (
+        <li class="cn-item">
+          <a href={`/posts/${post.id}/`}>
+            <span class="cn-thumb">
+              <img src={post.data.thumbnail} alt="" width="240" height="240" loading="lazy" />
+              <span class="badge">카드뉴스 {post.data.cardCount}장</span>
+            </span>
+            <span class="cn-title">{post.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

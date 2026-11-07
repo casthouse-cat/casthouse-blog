@@ -2,9 +2,12 @@
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import CategoryChips from '../components/CategoryChips.astro';
+import CardNewsStrip from '../components/CardNewsStrip.astro';
 import { getPublishedPosts } from '../lib/posts';
 
-const posts = await getPublishedPosts();
+const all = await getPublishedPosts();
+const cardNews = all.filter((p) => p.data.cardCount && p.data.thumbnail);
+const posts = all.filter((p) => !(p.data.cardCount && p.data.thumbnail));
 
 const jsonLd = [
   {
@@ -36,5 +39,6 @@ const jsonLd = [
   </section>
 
   <CategoryChips />
+  <CardNewsStrip posts={cardNews} />
   <PostList posts={posts} />
 </Base>

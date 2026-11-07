@@ -155,3 +155,14 @@ a { color: inherit; }
 .lb-prev:disabled, .lb-next:disabled { opacity: .25; cursor: default; }
 .lb-count { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; color: #fff; font-size: 13px; opacity: .8; }
 @media (max-width: 600px) { .lb-prev, .lb-next { display: none; } }
+
+/* 홈: 카드뉴스 띠 */
+.cn-strip { margin-bottom: 28px; }
+.cn-track { display: flex; gap: 12px; margin: 0 -20px; padding: 14px 20px 4px; list-style: none; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; border-top: 1px solid var(--line); }
+.cn-track::-webkit-scrollbar { display: none; }
+.cn-item { flex: 0 0 min(240px, 62vw); scroll-snap-align: start; }
+.cn-item a { display: block; text-decoration: none; }
+.cn-thumb { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #f9f8f6; }
+.cn-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.cn-thumb .badge { position: absolute; left: 8px; bottom: 8px; margin: 0; background: rgba(255,255,255,.92); }
+.cn-title { display: -webkit-box; margin-top: 10px; font-size: 15px; font-weight: 700; line-height: 1.45; color: var(--text); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
