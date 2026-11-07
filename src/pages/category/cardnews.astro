@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import CategoryChips from '../../components/CategoryChips.astro';
+import { getCardNewsPosts } from '../../lib/posts';
+
+const posts = await getCardNewsPosts();
+---
+
+<Base
+  title="카드뉴스 | 캐스트하우스 블로그"
+  description="고양이 입양을 앞두고 마음이 망설여지는 분들께 전하는 캐스트하우스의 카드뉴스 모음입니다. 옆으로 넘겨 보며 천천히 읽어보세요."
+  path="/category/cardnews/"
+>
+  <section class="hero">
+    <h1>카드뉴스</h1>
+  </section>
+  <CategoryChips active="카드뉴스" />
+  <div class="list-head"><b>전체 카드뉴스</b><span>{posts.length}</span></div>
+  <ul class="cn-grid">
+    {posts.map((post) => (
+      <li>
+        <a href={`/posts/${post.id}/`}>
+          <span class="cn-thumb">
+            <img src={post.data.thumbnail} alt="" width="480" height="600" loading="lazy" />
+            <span class="badge">{post.data.cardCount}장</span>
+          </span>
+          <span class="cn-title">{post.data.cardTitle ?? post.data.title}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>

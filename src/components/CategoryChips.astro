@@ -1,15 +1,20 @@
 ---
 import { getCategories, categoryPath } from '../lib/categories';
+import { getCardNewsPosts, CARDNEWS_CHIP_MIN } from '../lib/posts';
 interface Props { active?: string }
 const { active } = Astro.props;
 const categories = await getCategories();
+const showCardNews = (await getCardNewsPosts()).length >= CARDNEWS_CHIP_MIN;
 ---
 
-{categories.length >= 2 && (
+{(categories.length >= 2 || showCardNews) && (
   <nav class="chips" aria-label="카테고리">
     <a class={`chip ${!active ? 'on' : ''}`} href="/">전체</a>
     {categories.map((c) => (
       <a class={`chip ${active === c ? 'on' : ''}`} href={categoryPath(c)}>{c}</a>
     ))}
+    {showCardNews && (
+      <a class={`chip ${active === '카드뉴스' ? 'on' : ''}`} href="/category/cardnews/">카드뉴스</a>
+    )}
   </nav>
 )}
