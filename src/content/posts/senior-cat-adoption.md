@@ -69,7 +69,3 @@ draft: false
 ## 시간의 길이 vs. 밀도
 
 그래서 묘르신 입양은 시간의 길이가 아니라 밀도를 선택하는 일입니다. 크로노스 시간의 유한함은 바꿀 수 없지만, 카이로스 시간을 무한한 가치로 확장할 수 있는 잠재력이 우리 모두에게 있기 때문이죠.
-
-입양이 두렵고 망설여진다면 [고양이 입양이 두렵고 망설여질 때, 어떻게 결정하면 될까요?](/posts/cat-adoption-hesitation/) 글도 함께 읽어보세요.
-
-👉 [입양을 기다리는 아이들과 함께 살아보며 결정해보세요](https://casthouse.co/?utm_source=blog&utm_medium=content&utm_campaign=senior-cat-adoption)
