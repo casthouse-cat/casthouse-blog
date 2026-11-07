@@ -91,5 +91,3 @@ draft: false
 함께 살아본 뒤 묘연을 느꼈다면 앱에서 입양 신청서를 제출해주세요. 입양을 생각했을 때 풀리지 않는 의문이 있다면(예: 임대인과 협의는 어떻게 해야 하나요), 입실할 때 만난 케어테이커(임시보호인)에게 편하게 물어보셔도 됩니다. 고민은 나눌수록 작아지니까요.
 
 입양 조건이 궁금하다면 [고양이 동반 입양이 필수인가요?](/posts/joint-adoption-faq/) 글도 함께 읽어보세요.
-
-👉 [입양을 기다리는 아이들과 함께 살아보며 입양을 결정해보세요](https://casthouse.co/?utm_source=blog&utm_medium=content&utm_campaign=casthouse-vs-cat-pension)
