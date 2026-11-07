@@ -103,4 +103,69 @@ const jsonLd = [
     next?.addEventListener('click', () => go(Math.min(slides.length - 1, idx + 1)));
     update();
   });
+
+  // 전체화면 보기: 카드를 탭하면 어두운 배경 위에 크게 띄움
+  const carousels = document.querySelectorAll<HTMLElement>('.carousel');
+  if (carousels.length) {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.hidden = true;
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', '카드뉴스 전체화면');
+    lb.innerHTML = '<button type="button" class="lb-close" aria-label="닫기">✕</button><div class="lb-track"></div><button type="button" class="lb-prev" aria-label="이전 카드">‹</button><button type="button" class="lb-next" aria-label="다음 카드">›</button><div class="lb-count"></div>';
+    document.body.appendChild(lb);
+    const lbTrack = lb.querySelector<HTMLElement>('.lb-track')!;
+    const lbCount = lb.querySelector<HTMLElement>('.lb-count')!;
+    const lbPrev = lb.querySelector<HTMLButtonElement>('.lb-prev')!;
+    const lbNext = lb.querySelector<HTMLButtonElement>('.lb-next')!;
+    let lbIdx = 0;
+    let lastFocus: HTMLElement | null = null;
+    const lbGo = (i: number, smooth = true) => lbTrack.scrollTo({ left: i * lbTrack.clientWidth, behavior: smooth ? 'smooth' : 'instant' });
+    const lbUpdate = () => {
+      const n = lbTrack.children.length;
+      lbIdx = Math.max(0, Math.min(n - 1, Math.round(lbTrack.scrollLeft / lbTrack.clientWidth)));
+      lbCount.textContent = `${lbIdx + 1} / ${n}`;
+      lbPrev.disabled = lbIdx === 0;
+      lbNext.disabled = lbIdx === n - 1;
+    };
+    const close = () => {
+      lb.hidden = true;
+      document.body.style.overflow = '';
+      lastFocus?.focus();
+    };
+    const open = (imgs: HTMLImageElement[], start: number) => {
+      lbTrack.innerHTML = '';
+      imgs.forEach((src) => {
+        const d = document.createElement('div');
+        d.className = 'lb-slide';
+        const im = document.createElement('img');
+        im.src = src.currentSrc || src.src;
+        im.alt = src.alt;
+        d.appendChild(im);
+        lbTrack.appendChild(d);
+      });
+      lastFocus = document.activeElement as HTMLElement | null;
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lbGo(start, false);
+      lbUpdate();
+      lb.querySelector<HTMLButtonElement>('.lb-close')!.focus();
+    };
+    lbTrack.addEventListener('scroll', () => requestAnimationFrame(lbUpdate), { passive: true });
+    lbTrack.addEventListener('click', (e) => { if ((e.target as HTMLElement).tagName !== 'IMG') close(); });
+    lb.querySelector('.lb-close')!.addEventListener('click', close);
+    lbPrev.addEventListener('click', () => lbGo(Math.max(0, lbIdx - 1)));
+    lbNext.addEventListener('click', () => lbGo(Math.min(lbTrack.children.length - 1, lbIdx + 1)));
+    document.addEventListener('keydown', (e) => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') lbGo(Math.max(0, lbIdx - 1));
+      if (e.key === 'ArrowRight') lbGo(Math.min(lbTrack.children.length - 1, lbIdx + 1));
+    });
+    carousels.forEach((root) => {
+      const imgs = Array.from(root.querySelectorAll<HTMLImageElement>('.slide img'));
+      imgs.forEach((img, i) => img.addEventListener('click', () => open(imgs, i)));
+    });
+  }
 </script>

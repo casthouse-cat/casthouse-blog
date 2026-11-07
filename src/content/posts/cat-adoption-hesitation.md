@@ -12,6 +12,8 @@ keywords:
   - 캐스트하우스
 category: 캐스트하우스 이야기
 publishedAt: 2026-11-07
+thumbnail: /images/posts/card-hesitation-thumb.webp
+cardCount: 8
 draft: false
 ---
 

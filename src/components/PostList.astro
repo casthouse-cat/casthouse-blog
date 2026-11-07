@@ -13,10 +13,18 @@ const fmt = (d: Date) =>
   <ul class="post-list">
     {posts.map((post) => (
       <li>
-        <a class="post-item" href={`/posts/${post.id}/`}>
-          <span class="post-meta"><b>{post.data.category}</b> · {fmt(post.data.publishedAt)}</span>
-          <h2>{post.data.title}</h2>
-          <p>{post.data.description}</p>
+        <a class={`post-item${post.data.thumbnail ? ' has-thumb' : ''}`} href={`/posts/${post.id}/`}>
+          <div class="post-text">
+            <span class="post-meta">
+              <b>{post.data.category}</b> · {fmt(post.data.publishedAt)}
+              {post.data.cardCount && <span class="badge">카드뉴스 {post.data.cardCount}장</span>}
+            </span>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </div>
+          {post.data.thumbnail && (
+            <img class="post-thumb" src={post.data.thumbnail} alt="" width="96" height="120" loading="lazy" />
+          )}
         </a>
       </li>
     ))}
